@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AVL Tree Adventure 🌳</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="game">
+
+    <!-- HEADER -->
+    <header class="topbar">
+        <div class="brand">
+            <span class="logo">🌳</span>
+            <div>
+                <h1>AVL Tree Adventure</h1>
+                <p>Learn • Play • Balance • Master</p>
+            </div>
+        </div>
+
+        <div class="stats">
+            <div class="stat">
+                <span>⭐</span>
+                <strong id="score">0</strong>
+                <small>Score</small>
+            </div>
+
+            <div class="stat">
+                <span>⚡</span>
+                <strong id="xp">0</strong>
+                <small>XP</small>
+            </div>
+
+            <div class="stat">
+                <span>❤️</span>
+                <strong id="lives">3</strong>
+                <small>Lives</small>
+            </div>
+
+            <div class="stat">
+                <span>🏆</span>
+                <strong id="level">1</strong>
+                <small>Level</small>
+            </div>
+        </div>
+    </header>
+
+
+    <!-- GAME CONTENT -->
+    <main class="main">
+
+        <!-- LEFT PANEL -->
+        <aside class="sidebar">
+
+            <section class="card mission">
+                <div class="card-title">
+                    <span>🎯</span>
+                    <h2>Current Mission</h2>
+                </div>
+
+                <div class="mission-box">
+                    <h3 id="missionTitle">Welcome, Tree Guardian!</h3>
+                    <p id="missionText">
+                        Insert the numbers shown below and keep the AVL tree balanced.
+                    </p>
+
+                    <div class="target">
+                        <span>Target:</span>
+                        <strong id="targetNumbers">30, 20, 40</strong>
+                    </div>
+                </div>
+            </section>
+
+
+            <section class="card controls">
+                <div class="card-title">
+                    <span>🎮</span>
+                    <h2>Tree Controls</h2>
+                </div>
+
+                <div class="input-row">
+                    <input
+                        type="number"
+                        id="valueInput"
+                        placeholder="Enter number"
+                        min="0"
+                        max="999"
+                    >
+                    <button id="insertBtn" class="primary">➕ Insert</button>
+                </div>
+
+                <div class="button-grid">
+                    <button id="deleteBtn">🗑️ Delete</button>
+                    <button id="searchBtn">🔍 Search</button>
+                    <button id="randomBtn">🎲 Random</button>
+                    <button id="clearBtn">🧹 Clear</button>
+                </div>
+            </section>
+
+
+            <section class="card learning">
+                <div class="card-title">
+                    <span>📚</span>
+                    <h2>Quick Lesson</h2>
+                </div>
+
+                <div class="lesson">
+                    <h3>What is an AVL Tree?</h3>
+                    <p>
+                        An AVL tree is a Binary Search Tree that automatically
+                        keeps itself balanced.
+                    </p>
+                </div>
+
+                <div class="lesson">
+                    <h3>⚖️ Balance Factor</h3>
+                    <p>
+                        Balance Factor =
+                        <b>Height(Left) − Height(Right)</b>
+                    </p>
+                    <p class="formula">Valid values: -1, 0, +1</p>
+                </div>
+
+                <div class="lesson">
+                    <h3>🔄 Rotations</h3>
+                    <p>
+                        AVL trees use rotations when a node becomes unbalanced.
+                    </p>
+                </div>
+            </section>
+
+        </aside>
+
+
+        <!-- CENTER -->
+        <section class="arena">
+
+            <div class="arena-header">
+                <div>
+                    <h2>🌳 Tree Arena</h2>
+                    <p id="treeStatus">
+                        Your adventure begins here!
+                    </p>
+                </div>
+
+                <div class="balance-indicator">
+                    <span>Tree Health</span>
+                    <strong id="health">100%</strong>
+                </div>
+            </div>
+
+
+            <div id="treeContainer" class="tree-container">
+                <div class="empty-tree">
+                    <div class="big-tree">🌱</div>
+                    <h2>Your tree is waiting...</h2>
+                    <p>Insert a number to plant your first node!</p>
+                </div>
+            </div>
+
+
+            <div class="operation-log">
+                <div class="log-header">
+                    <h3>📜 Adventure Log</h3>
+                    <button id="clearLog">Clear</button>
+                </div>
+
+                <div id="log" class="log">
+                    <div class="log-item">
+                        <span>👋</span>
+                        <p>Welcome, Tree Guardian! Start by inserting a number.</p>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+
+        <!-- RIGHT PANEL -->
+        <aside class="rightbar">
+
+            <section class="card traversal">
+                <div class="card-title">
+                    <span>🧭</span>
+                    <h2>Tree Explorer</h2>
+                </div>
+
+                <button id="inorderBtn">Inorder Traversal</button>
+                <button id="preorderBtn">Preorder Traversal</button>
+                <button id="postorderBtn">Postorder Traversal</button>
+
+                <div class="result">
+                    <span>Result</span>
+                    <p id="traversalResult">—</p>
+                </div>
+            </section>
+
+
+            <section class="card challenge">
+                <div class="card-title">
+                    <span>🧩</span>
+                    <h2>Mini Challenge</h2>
+                </div>
+
+                <p id="quizQuestion">
+                    Which value keeps an AVL node balanced?
+                </p>
+
+                <div id="quizOptions" class="quiz-options">
+                    <button data-answer="-2">-2</button>
+                    <button data-answer="-1">-1</button>
+                    <button data-answer="2">2</button>
+                </div>
+
+                <p id="quizFeedback" class="quiz-feedback"></p>
+            </section>
+
+
+            <section class="card rotations">
+                <div class="card-title">
+                    <span>🔄</span>
+                    <h2>Rotation Guide</h2>
+                </div>
+
+                <div class="rotation">
+                    <span class="rotation-icon">↖️</span>
+                    <div>
+                        <b>LL Case</b>
+                        <p>Right Rotation</p>
+                    </div>
+                </div>
+
+                <div class="rotation">
+                    <span class="rotation-icon">↗️</span>
+                    <div>
+                        <b>RR Case</b>
+                        <p>Left Rotation</p>
+                    </div>
+                </div>
+
+                <div class="rotation">
+                    <span class="rotation-icon">🔀</span>
+                    <div>
+                        <b>LR Case</b>
+                        <p>Left + Right</p>
+                    </div>
+                </div>
+
+                <div class="rotation">
+                    <span class="rotation-icon">🔁</span>
+                    <div>
+                        <b>RL Case</b>
+                        <p>Right + Left</p>
+                    </div>
+                </div>
+            </section>
+
+        </aside>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer>
+        <p>
+            🌳 AVL Tree Adventure —
+            <span>Every rotation makes you stronger!</span>
+        </p>
+    </footer>
+
+</div>
+
+
+<!-- ROTATION MODAL -->
+<div id="rotationModal" class="modal hidden">
+    <div class="modal-content">
+
+        <button id="closeModal" class="close">×</button>
+
+        <div class="modal-icon">🔄</div>
+
+        <h2 id="rotationTitle">Tree Rotation</h2>
+
+        <p id="rotationDescription">
+            The tree needs balancing.
+        </p>
+
+        <div id="rotationDiagram" class="rotation-diagram"></div>
+
+        <button id="continueBtn" class="primary continue">
+            Continue Adventure 🚀
+        </button>
+
+    </div>
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
